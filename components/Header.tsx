@@ -1,19 +1,39 @@
-// components/Header.tsx
 "use client";
+
 import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-white border-b">
-      <div className="flex items-center justify-between px-6 py-4">
-        <Link href="/">MENSTORE</Link>
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <div className="mx-auto max-w-[1200px] px-6">
+        <div className="flex h-16 items-center justify-between">
+          
+          {/* Logo */}
+          <Link href="/" className="text-xl font-semibold tracking-wide">
+            MENSTORE
+          </Link>
 
-        <nav className="flex gap-6">
-          <Link href="/catalog">Shop</Link>
-          <Link href="/wishlist">Wishlist</Link>
-          <Link href="/cart">Cart</Link>
-          <Link href="/account">Account</Link>
-        </nav>
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center gap-8 text-sm">
+            <Link href="/catalog" className="hover:opacity-60 transition">
+              Shop
+            </Link>
+            <Link href="/wishlist" className="hover:opacity-60 transition">
+              Wishlist
+            </Link>
+            <Link href="/account" className="hover:opacity-60 transition">
+              Account
+            </Link>
+          </nav>
+
+          {/* Actions */}
+          <div className="flex items-center gap-4 text-sm">
+            <Link href="/cart" className="hover:opacity-60 transition">
+              Cart
+            </Link>
+          </div>
+
+        </div>
       </div>
     </header>
   );
