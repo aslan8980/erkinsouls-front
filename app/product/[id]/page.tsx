@@ -1,32 +1,74 @@
-// app/product/[id]/page.tsx
-"use client";
+import Link from "next/link";
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+export default function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   return (
-    <div className="px-6 py-10 grid md:grid-cols-2 gap-10">
-      <div className="h-[400px] bg-gray-200 flex items-center justify-center">
-        IMAGE
-      </div>
+    <div className="grid md:grid-cols-2 gap-16">
+      
+      {/* IMAGE */}
+      <div className="aspect-[3/4] bg-gray-100"></div>
 
-      <div className="space-y-4">
-        <h1 className="text-3xl">Product {params.id}</h1>
-        <p>$99.00</p>
+      {/* INFO */}
+      <div className="space-y-8">
+        
+        {/* Breadcrumb */}
+        <nav className="text-sm text-gray-500">
+          <Link href="/catalog" className="hover:underline">
+            Shop
+          </Link>{" "}
+          / Product {params.id}
+        </nav>
 
-        <div className="flex gap-2">
-          {["S", "M", "L", "XL"].map((s) => (
-            <button key={s} className="border px-4 py-2">
-              {s}
-            </button>
-          ))}
+        {/* Title & Price */}
+        <div>
+          <h1 className="text-3xl font-semibold mb-2">
+            Product name
+          </h1>
+          <p className="text-lg">$99</p>
         </div>
 
-        <button className="border px-6 py-3 w-full">
-          Add to cart
-        </button>
+        {/* Description */}
+        <p className="text-gray-600 max-w-md">
+          Minimal essential piece designed for everyday wear.
+          Crafted with attention to detail and premium materials.
+        </p>
 
-        <button className="underline">
-          Add to wishlist
-        </button>
+        {/* Sizes */}
+        <div>
+          <p className="text-sm mb-3">Size</p>
+          <div className="flex gap-3">
+            {["S", "M", "L", "XL"].map((size) => (
+              <button
+                key={size}
+                className="border px-4 py-2 text-sm hover:bg-black hover:text-white transition"
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="space-y-4">
+          <button className="w-full border border-black py-4 hover:bg-black hover:text-white transition">
+            Add to cart
+          </button>
+
+          <button className="text-sm underline hover:opacity-60 transition">
+            Add to wishlist
+          </button>
+        </div>
+
+        {/* Details */}
+        <div className="pt-8 border-t text-sm text-gray-600 space-y-2">
+          <p>• Regular fit</p>
+          <p>• Premium fabric</p>
+          <p>• Made for everyday comfort</p>
+        </div>
+
       </div>
     </div>
   );
