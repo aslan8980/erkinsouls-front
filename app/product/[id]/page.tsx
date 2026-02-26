@@ -6,7 +6,7 @@ export default function ProductPage({
   params: { id: string };
 }) {
   return (
-    <div className="grid md:grid-cols-2 gap-16">
+    <div className="grid gap-12 md:grid-cols-2 md:gap-16">
       
       {/* IMAGE */}
       <div className="aspect-[3/4] bg-gray-100"></div>
@@ -42,9 +42,9 @@ export default function ProductPage({
           <div className="flex gap-3">
             {["S", "M", "L", "XL"].map((size) => (
               <button
-                key={size}
-                className="border px-4 py-2 text-sm hover:bg-black hover:text-white transition"
-              >
+  key={size}
+  className="border px-4 py-2 text-sm min-w-[44px] hover:bg-black hover:text-white transition"
+>
                 {size}
               </button>
             ))}

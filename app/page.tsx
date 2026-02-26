@@ -5,14 +5,14 @@ export default function HomePage() {
     <div className="space-y-24">
       
       {/* HERO */}
-      <section className="flex flex-col items-center text-center pt-24">
-        <h1 className="text-5xl md:text-6xl font-semibold tracking-tight mb-6">
-          Modern Menswear
-        </h1>
+      <section className="flex flex-col items-center text-center pt-16 sm:pt-24">
+  <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight mb-6">
+    Modern Menswear
+  </h1>
 
-        <p className="text-gray-600 max-w-xl mb-10">
-          Timeless essentials designed for everyday style.
-        </p>
+  <p className="text-gray-600 max-w-xl mb-10 px-2">
+    Timeless essentials designed for everyday style.
+  </p>
 
         <Link
           href="/catalog"

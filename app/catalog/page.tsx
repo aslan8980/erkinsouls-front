@@ -21,7 +21,7 @@ export default function CatalogPage() {
       </section>
 
       {/* PRODUCTS GRID */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
         {Array.from({ length: 12 }).map((_, i) => (
           <Link
             key={i}
