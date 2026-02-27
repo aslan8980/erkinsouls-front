@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { getProducts } from "@/lib/api";
 
-export default function CatalogPage() {
+export default async function CatalogPage() {
+  const products = await getProducts();
+
   return (
     <div className="space-y-12">
-      
       {/* HEADER */}
       <section>
         <h1 className="text-3xl font-semibold mb-2">Shop</h1>
@@ -11,6 +13,9 @@ export default function CatalogPage() {
           Explore our collection of modern menswear.
         </p>
       </section>
+      <p className="text-sm text-gray-500">
+  Products count: {products.length}
+</p>
 
       {/* FILTERS (UI ONLY) */}
       <section className="flex gap-6 text-sm border-b pb-6">
@@ -22,24 +27,25 @@ export default function CatalogPage() {
 
       {/* PRODUCTS GRID */}
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-        {Array.from({ length: 12 }).map((_, i) => (
+        {products.map((product: any) => (
           <Link
-            key={i}
-            href={`/product/${i + 1}`}
+            key={product.id}
+            href={`/product/${product.id}`}
             className="group block"
           >
             <div className="aspect-[3/4] bg-gray-100 mb-4"></div>
 
             <div className="flex justify-between text-sm">
               <span className="group-hover:underline">
-                Product name
+                {product.title}
               </span>
-              <span className="text-gray-500">$99</span>
+              <span className="text-gray-500">
+                ${product.price}
+              </span>
             </div>
           </Link>
         ))}
       </section>
-
     </div>
   );
 }
