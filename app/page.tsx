@@ -1,53 +1,58 @@
 import Link from "next/link";
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <div className="space-y-24">
-      
-      {/* HERO */}
-      <section className="flex flex-col items-center text-center pt-16 sm:pt-24">
-  <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight mb-6">
-    Modern Menswear
-  </h1>
+    <>
+      <section className="relative h-screen w-full">
+        <img
+          src="https://images.unsplash.com/photo-1520975922325-6b8a0c49a8b4"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-  <p className="text-gray-600 max-w-xl mb-10 px-2">
-    Timeless essentials designed for everyday style.
-  </p>
+        <div className="absolute inset-0 bg-black/30" />
 
-        <Link
-          href="/catalog"
-          className="inline-block border border-black px-10 py-4 text-sm hover:bg-black hover:text-white transition"
-        >
-          Shop now
-        </Link>
-      </section>
+        <div className="relative z-10 h-full flex flex-col justify-center ml-20 text-white">
+          <h1 className="text-6xl font-semibold mb-6">
+            Modern Menswear
+          </h1>
 
-      {/* FEATURED PRODUCTS */}
-      <section>
-        <h2 className="text-2xl font-medium mb-8">
-          Featured products
-        </h2>
+          <p className="mb-8 text-lg">
+            Timeless essentials for everyday confidence.
+          </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((id) => (
-            <Link
-              key={id}
-              href={`/product/${id}`}
-              className="group block"
-            >
-              <div className="aspect-[3/4] bg-gray-100 mb-4"></div>
-
-              <div className="flex justify-between text-sm">
-                <span className="group-hover:underline">
-                  Product name
-                </span>
-                <span className="text-gray-500">$99</span>
-              </div>
-            </Link>
-          ))}
+          <Link
+  href="/catalog"
+  className="bg-white text-black px-8 py-3 inline-block"
+>
+  Shop Now
+</Link>
         </div>
       </section>
 
-    </div>
+      <section className="mt-20">
+        <h2 className="text-2xl font-semibold mb-10">
+          Featured Products
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+            <div className="h-64 bg-neutral-200 rounded-lg mb-4"></div>
+            <h3 className="font-medium">Black T-Shirt</h3>
+            <p className="text-neutral-600">$29</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+            <div className="h-64 bg-neutral-200 rounded-lg mb-4"></div>
+            <h3 className="font-medium">Minimal Hoodie</h3>
+            <p className="text-neutral-600">$59</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+            <div className="h-64 bg-neutral-200 rounded-lg mb-4"></div>
+            <h3 className="font-medium">Slim Fit Jeans</h3>
+            <p className="text-neutral-600">$79</p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

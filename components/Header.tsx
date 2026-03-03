@@ -1,38 +1,38 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
-        <div className="flex h-14 sm:h-16 items-center justify-between">
-          
-          {/* Logo */}
-          <Link href="/" className="text-lg sm:text-xl font-semibold tracking-wide">
-            MENSTORE
-          </Link>
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto max-w-[1280px] px-6 py-5 flex justify-between items-center">
+        <Link href="/" className="text-lg font-semibold tracking-wide">
+          MENSTORE
+        </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8 text-sm">
-            <Link href="/catalog" className="hover:opacity-60 transition">
-              Shop
-            </Link>
-            <Link href="/wishlist" className="hover:opacity-60 transition">
-              Wishlist
-            </Link>
-            <Link href="/account" className="hover:opacity-60 transition">
-              Account
-            </Link>
-          </nav>
-
-          {/* Actions */}
-          <div className="flex items-center gap-4 text-sm">
-            <Link href="/cart" className="hover:opacity-60 transition">
-              Cart
-            </Link>
-          </div>
-        </div>
+        <nav className="flex gap-8 text-sm font-medium">
+          <Link href="/shop">Shop</Link>
+          <Link href="/about">About</Link>
+          <Link href="/cart">Cart</Link>
+        </nav>
       </div>
     </header>
   );

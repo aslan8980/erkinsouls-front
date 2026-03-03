@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MENSTORE",
-  description: "Stylish menswear store",
+  title: "MENSTORE | Premium Menswear",
+  description: "Modern and minimalist menswear store",
 };
 
 export default function RootLayout({
@@ -26,14 +26,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`
+          ${geistSans.variable} 
+          ${geistMono.variable} 
+          min-h-screen 
+          flex 
+          flex-col 
+          bg-neutral-50 
+          text-neutral-900 
+          antialiased
+        `}
       >
         <Header />
 
-        <main className="mx-auto max-w-[1200px] px-6 py-8">
-          {children}
+        <main className="flex-1 w-full">
+          <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+            {children}
+          </div>
         </main>
 
         <Footer />
