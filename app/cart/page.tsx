@@ -1,5 +1,7 @@
 export const dynamic = "force-dynamic";
 
+import QuantityControl from "@/components/QuantityControl";
+import RemoveButton from "@/components/RemoveButton";
 import Link from "next/link";
 import { getCart } from "@/lib/api";
 
@@ -46,12 +48,22 @@ export default async function CartPage() {
               </p>
             </div>
 
-            <p className="font-medium">
-              $
-              {(item.product.price * item.quantity).toFixed(
-                2
-              )}
-            </p>
+            <div className="text-right space-y-2">
+  <p className="font-medium">
+    ${(item.product.price * item.quantity).toFixed(2)}
+  </p>
+
+  <div className="text-right space-y-3">
+  <p className="font-medium">
+    ${(item.product.price * item.quantity).toFixed(2)}
+  </p>
+
+  <QuantityControl
+    productId={item.product.id}
+    quantity={item.quantity}
+  />
+</div>
+</div>
           </div>
         ))}
       </div>

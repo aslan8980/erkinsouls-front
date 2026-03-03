@@ -53,3 +53,33 @@ export async function createOrder() {
 
   return res.json();
 }
+
+
+// --------DELETE --------
+export async function removeFromCart(productId: number) {
+  const res = await fetch(`${API_URL}/cart/${productId}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) throw new Error("Failed to remove item");
+
+  return res.json();
+}
+
+
+// --------CHANGE --------
+export async function updateCartQuantity(
+  productId: number,
+  quantity: number
+) {
+  const res = await fetch(
+    `${API_URL}/cart/${productId}?quantity=${quantity}`,
+    {
+      method: "PATCH",
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to update quantity");
+
+  return res.json();
+}
