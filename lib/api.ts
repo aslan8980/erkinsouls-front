@@ -40,3 +40,16 @@ export async function getCart() {
   if (!res.ok) throw new Error("Failed to fetch cart");
   return res.json();
 }
+
+
+
+// -------- ORDERS --------
+export async function createOrder() {
+  const res = await fetch(`${API_URL}/orders`, {
+    method: "POST",
+  });
+
+  if (!res.ok) throw new Error("Failed to create order");
+
+  return res.json();
+}
