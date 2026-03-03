@@ -1,59 +1,72 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
+import { getCart } from "@/lib/api";
 
-export default function CartPage() {
+export default async function CartPage() {
+  const cart = await getCart();
+
+  if (!cart.length) {
+    return (
+      <div className="space-y-6">
+        <h1 className="text-3xl font-semibold">Your Cart</h1>
+        <p className="text-gray-500">Your cart is empty.</p>
+        <Link
+          href="/catalog"
+          className="underline hover:opacity-60 transition"
+        >
+          Continue shopping
+        </Link>
+      </div>
+    );
+  }
+
+  const total = cart.reduce(
+    (sum: number, item: any) =>
+      sum + item.product.price * item.quantity,
+    0
+  );
+
   return (
-    <div className="grid gap-12 md:grid-cols-3">
-      
-      {/* ITEMS */}
-      <div className="md:col-span-2 space-y-8">
-        <h1 className="text-2xl font-semibold">Cart</h1>
+    <div className="space-y-10">
+      <h1 className="text-3xl font-semibold">Your Cart</h1>
 
-        {[1, 2].map((id) => (
+      <div className="space-y-6">
+        {cart.map((item: any) => (
           <div
-            key={id}
-            className="flex gap-6 border-b pb-6"
+            key={item.product.id}
+            className="flex justify-between border-b pb-6"
           >
-            {/* Image */}
-            <div className="w-24 aspect-[3/4] bg-gray-100"></div>
-
-            {/* Info */}
-            <div className="flex-1 space-y-2">
-              <p className="font-medium">Product name</p>
-              <p className="text-sm text-gray-500">$99</p>
-
-              {/* Quantity */}
-              <div className="flex items-center gap-3 text-sm">
-                <button className="border px-2 py-1">−</button>
-                <span>1</span>
-                <button className="border px-2 py-1">+</button>
-              </div>
+            <div>
+              <p className="font-medium">
+                {item.product.title}
+              </p>
+              <p className="text-sm text-gray-500">
+                ${item.product.price} × {item.quantity}
+              </p>
             </div>
 
-            {/* Remove */}
-            <button className="text-sm text-gray-400 hover:underline">
-              Remove
-            </button>
+            <p className="font-medium">
+              $
+              {(item.product.price * item.quantity).toFixed(
+                2
+              )}
+            </p>
           </div>
         ))}
       </div>
 
-      {/* SUMMARY */}
-      <div className="border p-4 sm:p-6 space-y-6 h-fit">
-        <h2 className="text-lg font-medium">Summary</h2>
-
-        <div className="flex justify-between text-sm">
-          <span>Subtotal</span>
-          <span>$198</span>
-        </div>
-
-        <Link
-          href="/checkout"
-          className="block text-center border border-black py-3 hover:bg-black hover:text-white transition"
-        >
-          Checkout
-        </Link>
+      <div className="flex justify-between text-lg font-semibold pt-6 border-t">
+        <span>Total</span>
+        <span>${total.toFixed(2)}</span>
       </div>
 
+      <Link
+        href="/checkout"
+        className="block w-full text-center border border-black py-4 hover:bg-black hover:text-white transition"
+      >
+        Proceed to Checkout
+      </Link>
     </div>
   );
 }
